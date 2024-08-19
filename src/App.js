@@ -5,16 +5,37 @@ import SplitFormBill from "./SplitBillForm";
 import { useState } from "react";
 function App() {
   const [showForm, setShowForm] = useState(false);
+  const [friends, setFriends] = useState([
+    {
+      name: "Mary",
+      img: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=600",
+      balance: -70,
+    },
+    {
+      name: "Mike",
+      img: "https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=600",
+      balance: 60,
+    },
+    {
+      name: "Suzy",
+      img: "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=600",
+      balance: 0,
+    },
+  ]);
+
   function handleClick() {
     setShowForm((prev) => !prev);
-    console.log("Button clicked. showForm is now:", !showForm);
   }
+  function handleAddFriend(newFriend) {
+    setFriends((prev) => [...prev, newFriend]);
+  }
+
   return (
     <>
-      <Friends />
+      <Friends friends={friends} />
       <Button onClick={handleClick}>{showForm ? "Close" : "Add Friend"}</Button>
-      {showForm && <AddFriend />}
-      {console.log(showForm)}
+      {showForm && <AddFriend onAddFriend={handleAddFriend} />}
+
       <SplitFormBill />
     </>
   );
