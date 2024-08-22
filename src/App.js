@@ -5,6 +5,7 @@ import SplitFormBill from "./SplitBillForm";
 import { useState } from "react";
 function App() {
   const [showForm, setShowForm] = useState(false);
+  const [selectedFriend, setSelectedFriend] = useState(null);
   const [friends, setFriends] = useState([
     {
       name: "Mary",
@@ -30,13 +31,16 @@ function App() {
     setFriends((prev) => [...prev, newFriend]);
   }
 
+  function handleSelectedFriend(friend) {
+    setSelectedFriend(friend);
+  }
   return (
     <>
-      <Friends friends={friends} />
+      <Friends friends={friends} onSelectFriend={handleSelectedFriend} />
       <Button onClick={handleClick}>{showForm ? "Close" : "Add Friend"}</Button>
       {showForm && <AddFriend onAddFriend={handleAddFriend} />}
 
-      <SplitFormBill />
+      {selectedFriend && <SplitFormBill friend={selectedFriend} />}
     </>
   );
 }

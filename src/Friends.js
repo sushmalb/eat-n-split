@@ -1,13 +1,12 @@
 import FriendList from "./FriendList";
-import { useState } from "react";
 
-const Friends = ({ friends }) => {
+const Friends = ({ friends, onSelectFriend }) => {
   return (
     <>
       <ul style={{ listStyleType: "none" }}>
         {friends.map((i) => (
           <li>
-            <FriendList friend={i} />
+            <FriendList friend={i} onSelectFriend={onSelectFriend} />
           </li>
         ))}
       </ul>

@@ -1,6 +1,10 @@
 import Button from "./Button";
 
-const FriendList = ({ friend }) => {
+const FriendList = ({ friend, onSelectFriend }) => {
+  function handleClick() {
+    onSelectFriend(friend);
+  }
+
   return (
     <div style={{ display: "flex" }}>
       <img
@@ -21,7 +25,7 @@ const FriendList = ({ friend }) => {
         </p>
       )}
       {friend.balance === 0 && <p>You and {friend.name} are even</p>}
-      <Button>Select</Button>
+      <Button onClick={handleClick}>Select</Button>
     </div>
   );
 };
